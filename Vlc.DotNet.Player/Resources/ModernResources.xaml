@@ -1,0 +1,408 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    >
+
+    <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+
+    <LinearGradientBrush x:Key="OnScreenMessageBrush" StartPoint="0, 0" EndPoint="0, 1" Opacity=".5">
+        <GradientStop Offset="0" Color="{DynamicResource AccentColor}" />
+        <GradientStop Offset=".4" Color="{DynamicResource AccentColor}" />
+        <GradientStop Offset=".8" Color="Transparent" />
+        <GradientStop Offset="1" Color="{DynamicResource AccentColor}" />
+    </LinearGradientBrush>
+
+    <ItemsPanelTemplate x:Key="ComboBoxFastDropDownItemsPanel">
+        <VirtualizingStackPanel/>
+    </ItemsPanelTemplate>
+
+    <Style TargetType="{x:Type Control}" x:Key="ContainerContent" >
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Margin" Value="0,24,0,0" />
+    </Style>
+
+    <Style TargetType="ScrollViewer" >
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+    </Style>
+
+    <Style TargetType="UserControl" x:Key="TabPage">
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+
+        <Style.Resources>
+            <Style TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
+                <Setter Property="Margin" Value="0,10,10,4"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+
+        </Style.Resources>
+    </Style>
+
+    <Style TargetType="Control" x:Key="ReportStyle">
+        <Setter Property="Margin" Value="0,10,10,4"/>
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+
+
+    <Style TargetType="TreeView">
+        <Setter Property="BorderBrush" Value="{DynamicResource InputBorderHover}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="TabPageHeader" BasedOn="{StaticResource Heading2}" >
+        <Setter Property="Margin" Value="0,0,0,24" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBox}" x:Key="TabPageHeaderBox" BasedOn="{StaticResource Heading2TextBox}" >
+        <Setter Property="Margin" Value="0,0,0,24" />
+    </Style>
+
+    <Style TargetType="{x:Type StackPanel}" x:Key="TabPageForm" >
+        <Setter Property="Margin" Value="20,0,0,0" />
+    </Style>
+
+    <Style TargetType="{x:Type Button}" x:Key="ImageButton" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+
+        <Style.Resources>
+            <Style TargetType="StackPanel">
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Stretch" />
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <Style TargetType="StackPanel" x:Key="LeftPane">
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+
+        <Style.Resources>
+            <Style TargetType="GroupBox">
+                <Setter Property="Margin" Value="0,0,4,10"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource InputBorderHover}" />
+                <Setter Property="BorderBrush" Value="CornflowerBlue" />
+                <Setter Property="BorderThickness" Value="1" />
+
+                <Style.Resources>
+                    <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                        <Setter Property="FontWeight" Value="Bold"/>
+                    </Style>
+                </Style.Resources>
+            </Style>
+
+            <Style TargetType="Border">
+                <Setter Property="Margin" Value="0,0,4,10"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource InputBorderHover}" />
+                <Setter Property="BorderBrush" Value="CornflowerBlue" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+
+                <Style.Resources>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                    </Style>
+                </Style.Resources>
+
+            </Style>
+
+            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                <Setter Property="Margin" Value="4"/>
+                <Setter Property="Padding" Value="20,15,20,15"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+
+                <Style.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Margin" Value="4,-1,0,0"/>
+                    </Style>
+                    <Style TargetType="Path">
+                        <Setter Property="Fill" Value="{DynamicResource ButtonText}"/>
+                        <Setter Property="Stretch" Value="Fill"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Fill" Value="{DynamicResource ButtonTextDisabled}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Fill" Value="{DynamicResource ButtonTextHover}"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Fill" Value="{DynamicResource ButtonTextPressed}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Style.Resources>
+            </Style>
+
+            <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                <Setter Property="Margin" Value="4"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+
+
+    <Style TargetType="UserControl" x:Key="TitlesAndGroupsStyle">
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+
+        <Style.Resources>
+            <Style TargetType="GroupBox">
+                <Setter Property="Margin" Value="0,0,4,10"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource InputBorderHover}" />
+                <Setter Property="BorderBrush" Value="CornflowerBlue" />
+                <Setter Property="BorderThickness" Value="1" />
+
+                <Style.Resources>
+                    <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                        <Setter Property="FontWeight" Value="Bold"/>
+                    </Style>
+                </Style.Resources>
+            </Style>
+
+            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                <Setter Property="Margin" Value="4"/>
+                <Setter Property="Padding" Value="20,15,20,15"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            </Style>
+
+        </Style.Resources>
+    </Style>
+
+    <Style TargetType="Border">
+        <Setter Property="BorderBrush" Value="{DynamicResource InputBorderHover}" />
+    </Style>
+
+    <Style TargetType="{x:Type Control}" x:Key="GridCellStyle">
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="IsHitTestVisible" Value="True"/>
+        <Setter Property="Focusable" Value="True"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+
+    <Style TargetType="{x:Type Rectangle}" x:Key="LeftBarRectangle">
+        <Setter Property="Fill" Value="{DynamicResource SeparatorBackground}"/>
+        <Setter Property="Width" Value="1"/>
+        <Setter Property="Margin" Value="10,4,10,4"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+    </Style>
+
+    <Style TargetType="{x:Type Rectangle}" x:Key="HorizontalRectangle">
+        <Setter Property="Fill" Value="{DynamicResource SeparatorBackground}"/>
+        <Setter Property="Height" Value="1"/>
+        <Setter Property="Margin" Value="10,4,10,4"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style TargetType="{x:Type DataGridColumnHeader}" x:Key="GridHeaderStyle" BasedOn="{StaticResource DataGridColumnHeaderNoSort}">
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="IsHitTestVisible" Value="True"/>
+        <Setter Property="Focusable" Value="True"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+
+    <Style TargetType="{x:Type CheckBox}" x:Key="GridCheckBoxStyle" BasedOn="{StaticResource {x:Type CheckBox}}" >
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style TargetType="{x:Type ComboBox}" x:Key="GridComboBoxStyle" BasedOn="{StaticResource {x:Type ComboBox}}">
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <Style TargetType="{x:Type ComboBoxItem}" x:Key="GridComboBoxItemStyle" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+        <Setter Property="Margin" Value="4,1,4,1"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+
+    <Style TargetType="{x:Type GroupItem}" x:Key="GroupItemStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Expander IsExpanded="True">
+                        <Expander.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="22" VerticalAlignment="Bottom" />
+                                <TextBlock Text="{Binding ItemCount}" FontSize="22" FontWeight="Bold" FontStyle="Italic" Margin="10,0,0,0" VerticalAlignment="Bottom" />
+                                <TextBlock Text=" item(s)" FontSize="22" FontStyle="Italic" VerticalAlignment="Bottom" />
+                            </StackPanel>
+                        </Expander.Header>
+                        <ItemsPresenter />
+                    </Expander>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- checkbox-in-datagrid styles-->
+    <Style x:Key="ReadOnlyCheckBoxStyle" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Opacity" Value="0.5" />
+    </Style>
+
+    <Style x:Key="TextButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="PathButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+
+        <Style.Resources>
+            <Style TargetType="Path">
+                <Setter Property="Fill" Value="Gray"/>
+                <Setter Property="Stretch" Value="Fill"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="false">
+                        <Setter Property="Fill" Value="{DynamicResource ButtonTextDisabled}"/>
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Fill" Value="{DynamicResource ButtonTextHover}"/>
+                    </Trigger>
+                    <Trigger Property="IsFocused" Value="True">
+                        <Setter Property="Fill" Value="{DynamicResource ButtonTextPressed}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <Style x:Key="PathTextButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+
+        <Style.Resources>
+            <Style TargetType="StackPanel">
+                <Setter Property="Orientation" Value="Horizontal"/>
+            </Style>
+
+            <Style TargetType="TextBlock">
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="10,0,0,0"/>
+            </Style>
+
+            <Style TargetType="Path">
+                <Setter Property="Fill" Value="{DynamicResource ButtonText}"/>
+                <Setter Property="Stretch" Value="Fill"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="false">
+                        <Setter Property="Fill" Value="{DynamicResource ButtonTextDisabled}"/>
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Fill" Value="{DynamicResource ButtonTextHover}"/>
+                    </Trigger>
+                    <Trigger Property="IsFocused" Value="True">
+                        <Setter Property="Fill" Value="{DynamicResource ButtonTextPressed}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <Style TargetType="TabControl">
+        <Setter Property="Background" Value="Transparent"/>
+        <Style.Resources>
+            <Style TargetType="{x:Type TabPanel}">
+                <Setter Property="Background" Value="Transparent"/>
+            </Style>
+            <Style TargetType="{x:Type TabItem}">
+                <Setter Property="Foreground" Value="{DynamicResource ButtonText}"/>
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                <Setter Property="Background" Value="{DynamicResource ButtonBackground}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorder}"/>
+                <Setter Property="Foreground" Value="{DynamicResource ButtonText}"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="VerticalContentAlignment" Value="Top"/>
+                <Setter Property="Padding" Value="16,3,16,5"/>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TabItem}">
+                            <Grid>
+                                <Border  Name="Border" Margin="0,0,-4,0" BorderThickness="1,1,1,1" CornerRadius="2,12,0,0" >
+                                    <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="12,2,12,2" RecognizesAccessKey="True"/>
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Panel.ZIndex" Value="100" />
+                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource ButtonBackgroundPressed}" />
+                                    <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,0" />
+                                    <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderPressed}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource ButtonTextPressed}"/>
+                                </Trigger>
+
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Foreground" Value="{DynamicResource ButtonTextDisabled}"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource ButtonBackgroundHover}" />
+                                    <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderHover}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource ButtonTextHover}"/>
+                                    <Setter TargetName="Border" Property="BorderThickness" Value="2,2,2,0" />
+                                </Trigger>
+
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Style.Resources>
+    </Style>
+
+</ResourceDictionary>

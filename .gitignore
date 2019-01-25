@@ -1,0 +1,34 @@
+#   .tfignore usage
+#
+#   # begins a comment line
+#   The * and ? wildcards are supported.
+#   A filespec is recursive unless prefixed by the / character.
+#   ! negates a filespec (files that match the pattern are not ignored)
+
+.vs
+.dtbcache
+.suo
+Debug/*
+MigrationBackup
+
+bin
+obj
+pkg
+pkgObj
+NugetPackages
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Build results
+bin
+obj
+
+#include nuget executable
+!NuGet.exe
+
+#nuget packages directory
+packages
+
